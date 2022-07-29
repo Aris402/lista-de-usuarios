@@ -1,4 +1,12 @@
 import { useState, useEffect } from "react";
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+
 
 const App = (props: any) => {
 	const [users, setUsers] = useState([
@@ -17,11 +25,13 @@ const App = (props: any) => {
 			<h1>Lista de usuários</h1>
 			<div className="card">
         {loading ? <h2>Carregando...</h2> : null}
-				<ul>
+				<List>
 					{users.map((user) => (
-						<li key={user.id}>{user.name}</li>
+						<ListItemButton>
+							<ListItemText primary={user.name}></ListItemText >
+						</ListItemButton>
 					))}
-				</ul>
+				</List>
 			</div>
 		</div>
 	);
