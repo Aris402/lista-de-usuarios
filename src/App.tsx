@@ -9,6 +9,11 @@ import Divider from '@mui/material/Divider';
 
 
 const App = (props: any) => {
+	const styles = {
+		display: 'flex',
+		alignItems: 'center',
+		flexDirection: 'column',
+	}
 	const [users, setUsers] = useState([
 		{ id: 1, name: "Minora" },
 		{ id: 2, name: "Ataide" },
@@ -21,7 +26,7 @@ const App = (props: any) => {
 			.then((json) => {setUsers(json); setLoading(false)});
 	});
 	return (
-		<div className="App">
+		<div className="App" style={styles}>
 			<h1>Lista de usuários</h1>
 			<div className="card">
         {loading ? <h2>Carregando...</h2> : null}
