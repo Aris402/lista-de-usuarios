@@ -2,17 +2,12 @@ import { useState, useEffect } from "react";
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import './css/styles.css';
+import ReactDOM from "react-dom";
 
 
 const App = (props: any) => {
@@ -30,45 +25,39 @@ const App = (props: any) => {
 		{ id: 2, name: "Ataide" },
 	]);
 
+	const [tasks, setTasks] = useState([
+		{ userId: "1", title: "Ensinar React", completed: false },
+		{ userId: "2", title: "Ensinar Javascrept", completed: true }
+	])
+
 	const [loading, setLoading] = useState(true);
 
-		useEffect(() => {
-			fetch("https://jsonplaceholder.typicode.com/users/")
-				.then((response) => response.json())
-				.then((json) => {setUsers(json); setLoading(false)});
+	useEffect(() => {
+        fetch("https://jsonplaceholder.typicode.com/users/")
+            .then((response) => response.json())
+            .then((json) => {setUsers(json); setLoading(false)});
 	});
+	useEffect(() => {
+        fetch("https://jsonplaceholder.typicode.com/users/1/todos")
+            .then((response) => response.json())
+            .then((json) => {setTasks(json); setLoading(false)});
+	});
+
 	const [open, setOpen] = useState(false);
+	
 	const isOpen = () => {
 		setOpen(true);
 	};
 	
-	  const isClosed = () => {
+	const isClosed = () => {
 		setOpen(false);
 	};
+	
+	const [pages, setPages] = useState(0);
 
-
-	return (
-		<div className="App">
-				<Toolbar sx={navBar}>
-					<IconButton  edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-						<MenuIcon onClick={open ? isClosed : isOpen} />
-					</IconButton>
-					<Typography variant="h5" noWrap component="div" sx={{ flexGrow: 1 }}>
-						Navegação
-					</Typography>
-				</Toolbar>
-				{open ? 
-					<List className="nav-bar">
-						<ListItemButton>
-							<ListItemText>Tarefas</ListItemText>
-						</ListItemButton>
-						<ListItemButton>
-							<ListItemText>Posts</ListItemText>
-						</ListItemButton>
-					</List>
-					: null
-				}
-			<div className="List" style={alignMent}>
+	const changePages = () => {
+		if(pages == 1 || pages == 0){
+			return (<div className="List" style={alignMent}>
 				<h1>Lista de usuários</h1>
 				<div className="card">
 				{loading ? <h2>Carregando...</h2> : null}
@@ -81,6 +70,45 @@ const App = (props: any) => {
 					</List>
 				</div>
 			</div>
+			)
+	}
+	else if(pages == 2){
+		return( 
+		<div>
+			<h1>Lista de tarefas</h1>
+			<div className="tasks"></div>
+		</div>
+		
+		)
+	}
+	}
+	return (
+		<div className="App" id="App">
+				<Toolbar sx={navBar}>
+					<IconButton onClick={open ? isClosed : isOpen} edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+						<MenuIcon />
+					</IconButton>
+					<Typography variant="h5" noWrap component="div" sx={{ flexGrow: 1 }}>
+						Navegação
+					</Typography>
+				</Toolbar>
+				{open ? 
+					<List className="nav-bar">
+						<ListItemButton onClick={() => setPages(1)}>
+							<ListItemText>Usuários</ListItemText>
+						</ListItemButton>
+						<hr></hr>
+						<ListItemButton onClick={() => setPages(2)}>
+							<ListItemText>Tarefas</ListItemText>
+						</ListItemButton>
+						<hr></hr>
+						<ListItemButton onClick={() => setPages(3)}>
+							<ListItemText>Posts</ListItemText>
+						</ListItemButton>
+					</List>
+					: null
+				}
+			{changePages()}
 		</div>
 	);
 };
