@@ -14,3 +14,6 @@ hr{
     width: 90%;
     margin: auto;
 }
+.tasksList{
+    display: flex;
+}

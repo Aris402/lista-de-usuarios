@@ -7,7 +7,9 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import './css/styles.css';
-import ReactDOM from "react-dom";
+import { ThemeProvider, createTheme, experimental_sx as sx, } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
+import Check from '@mui/icons-material/Check';
 
 
 const App = (props: any) => {
@@ -15,6 +17,7 @@ const App = (props: any) => {
 		display: 'flex',
 		alignItems: 'center',
 		flexDirection: 'column',
+		marginTop: '30px',
 	}
 	const navBar = {
 		bgcolor: 'rgb(18, 18, 18)',
@@ -74,13 +77,93 @@ const App = (props: any) => {
 	}
 	else if(pages == 2){
 		return( 
-		<div>
+		<div style={alignMent}>
 			<h1>Lista de tarefas</h1>
-			<div className="tasks"></div>
+			<div className="tasks">
+				{loading ? <h2>Carregando...</h2> : null}
+				<List>
+					{tasks.map((task) => (
+						<ListItemButton>
+							<ListItemText primary={task.title}></ListItemText>
+						</ListItemButton>
+					))}
+				</List>
+			</div>
 		</div>
-		
 		)
 	}
+	}
+
+	const finalTheme = createTheme({
+		components: {
+		  MuiChip: {
+			styleOverrides: {
+			  root: sx({
+				// https://mui.com/system/the-sx-prop/#spacing
+				px: 1,
+				py: 0.25,
+				// https://mui.com/system/borders/#border-radius
+				borderRadius: 1, // 4px as default.
+			  }),
+			  label: {
+				padding: 'initial',
+			  },
+			  icon: sx({
+				mr: 0.5,
+				ml: '-2px',
+			  }),
+			},
+		  },
+		},
+	  });
+
+	const userTasks = () => {
+		return (
+			<div style={alignMent}>
+			<h1>Lista de tarefas</h1>
+			<div className="tasks">
+				{loading ? <h2>Carregando...</h2> : null}
+				<List className="tasksList">
+					{tasks.map((task) => (
+						<ListItemButton>
+							<ListItemText primary={task.title}></ListItemText>
+						</ListItemButton>
+					))}
+
+					{
+						tasks.map((task) => (
+							task.completed ? <ThemeProvider theme={finalTheme}>
+							<Chip
+							  color="success"
+							  label={
+								<span>
+								  <b>Status:</b> Completed
+								</span>
+							  }
+							  icon={<Check fontSize="small" />}
+							/>
+						  </ThemeProvider> :
+							
+						  <ThemeProvider theme={finalTheme}>
+							<Chip
+							  color="error"
+							  label={
+								<span>
+								  <b>Status:</b> Incomplete
+								</span>
+							  }
+							  icon={<Check fontSize="small" />}
+							/>
+						  </ThemeProvider>
+	
+						)
+					}
+
+				}
+				</List>
+			</div>
+		</div>
+		)
 	}
 	return (
 		<div className="App" id="App">
