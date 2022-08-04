@@ -6,10 +6,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import Checkbox from '@mui/material/Checkbox';
 import './css/styles.css';
-import { ThemeProvider, createTheme, experimental_sx as sx, } from '@mui/material/styles';
-import Chip from '@mui/material/Chip';
-import Check from '@mui/icons-material/Check';
 
 
 const App = (props: any) => {
@@ -94,29 +92,6 @@ const App = (props: any) => {
 	}
 	}
 
-	const finalTheme = createTheme({
-		components: {
-		  MuiChip: {
-			styleOverrides: {
-			  root: sx({
-				// https://mui.com/system/the-sx-prop/#spacing
-				px: 1,
-				py: 0.25,
-				// https://mui.com/system/borders/#border-radius
-				borderRadius: 1, // 4px as default.
-			  }),
-			  label: {
-				padding: 'initial',
-			  },
-			  icon: sx({
-				mr: 0.5,
-				ml: '-2px',
-			  }),
-			},
-		  },
-		},
-	  });
-
 	const userTasks = () => {
 		return (
 			<div style={alignMent}>
@@ -125,41 +100,13 @@ const App = (props: any) => {
 				{loading ? <h2>Carregando...</h2> : null}
 				<List className="tasksList">
 					{tasks.map((task) => (
+						task.completed ? <Checkbox checked /> : <Checkbox />
+					))}
+					{tasks.map((task) => (
 						<ListItemButton>
 							<ListItemText primary={task.title}></ListItemText>
 						</ListItemButton>
 					))}
-
-					{
-						tasks.map((task) => (
-							task.completed ? <ThemeProvider theme={finalTheme}>
-							<Chip
-							  color="success"
-							  label={
-								<span>
-								  <b>Status:</b> Completed
-								</span>
-							  }
-							  icon={<Check fontSize="small" />}
-							/>
-						  </ThemeProvider> :
-							
-						  <ThemeProvider theme={finalTheme}>
-							<Chip
-							  color="error"
-							  label={
-								<span>
-								  <b>Status:</b> Incomplete
-								</span>
-							  }
-							  icon={<Check fontSize="small" />}
-							/>
-						  </ThemeProvider>
-	
-						)
-					}
-
-				}
 				</List>
 			</div>
 		</div>
