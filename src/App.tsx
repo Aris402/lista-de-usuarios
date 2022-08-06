@@ -6,43 +6,16 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Checkbox from '@mui/material/Checkbox';
+import UserTasks from "./screens/UsersTasks";
+import UsersPage from "./screens/UsersPage";
 import './css/styles.css';
 
 
 const App = (props: any) => {
-	const alignMent = {
-		display: 'flex',
-		alignItems: 'center',
-		flexDirection: 'column',
-		marginTop: '30px',
-	}
 	const navBar = {
 		bgcolor: 'rgb(18, 18, 18)',
 		color: 'white',
 	}
-	const [users, setUsers] = useState([
-		{ id: 1, name: "Minora" },
-		{ id: 2, name: "Ataide" },
-	]);
-
-	const [tasks, setTasks] = useState([
-		{ userId: "1", title: "Ensinar React", completed: false },
-		{ userId: "2", title: "Ensinar Javascrept", completed: true }
-	])
-
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/users/")
-            .then((response) => response.json())
-            .then((json) => {setUsers(json); setLoading(false)});
-	});
-	useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/users/1/todos")
-            .then((response) => response.json())
-            .then((json) => {setTasks(json); setLoading(false)});
-	});
 
 	const [open, setOpen] = useState(false);
 	
@@ -57,61 +30,19 @@ const App = (props: any) => {
 	const [pages, setPages] = useState(0);
 
 	const changePages = () => {
+		
 		if(pages == 1 || pages == 0){
-			return (<div className="List" style={alignMent}>
-				<h1>Lista de usuários</h1>
-				<div className="card">
-				{loading ? <h2>Carregando...</h2> : null}
-					<List>
-						{users.map((user) => (
-							<ListItemButton>
-								<ListItemText primary={user.name}></ListItemText >
-							</ListItemButton>
-						))}
-					</List>
-				</div>
-			</div>
+			return (
+					<UsersPage/>
+				)
+		}
+		else if(pages == 2){
+			return( 
+				<UserTasks/>
 			)
+		}
 	}
-	else if(pages == 2){
-		return( 
-		<div style={alignMent}>
-			<h1>Lista de tarefas</h1>
-			<div className="tasks">
-				{loading ? <h2>Carregando...</h2> : null}
-				<List>
-					{tasks.map((task) => (
-						<ListItemButton>
-							<ListItemText primary={task.title}></ListItemText>
-						</ListItemButton>
-					))}
-				</List>
-			</div>
-		</div>
-		)
-	}
-	}
-
-	const userTasks = () => {
-		return (
-			<div style={alignMent}>
-			<h1>Lista de tarefas</h1>
-			<div className="tasks">
-				{loading ? <h2>Carregando...</h2> : null}
-				<List className="tasksList">
-					{tasks.map((task) => (
-						task.completed ? <Checkbox checked /> : <Checkbox />
-					))}
-					{tasks.map((task) => (
-						<ListItemButton>
-							<ListItemText primary={task.title}></ListItemText>
-						</ListItemButton>
-					))}
-				</List>
-			</div>
-		</div>
-		)
-	}
+	
 	return (
 		<div className="App" id="App">
 				<Toolbar sx={navBar}>
