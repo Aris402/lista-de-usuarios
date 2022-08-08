@@ -12,14 +12,14 @@ const UserTasks = (props: any) => {
 	])
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/todos`)
+        fetch(`https://jsonplaceholder.typicode.com/users/1/todos`)
             .then((response) => response.json())
             .then((json) => {setTasks(json); setLoading(false)});
     });
 
     return (
         <div className="alignMent">
-				<h1>Lista de tarefas de {props.user.name}</h1>
+				<h1>Lista de tarefas de </h1>
 				<div className="tasks">
 					{loading ? <h2>Carregando...</h2> : null}
 					<List className="tasksList">

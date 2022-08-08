@@ -14,9 +14,6 @@ hr{
     width: 90%;
     margin: auto;
 }
-.tasksList{
-    display: flex;
-}
 .alignMent{
     display: flex;
     align-items: center;
