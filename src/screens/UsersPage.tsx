@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import UserTasks from './UsersTasks';
 
 
-const UsersPage = () =>{
+const UsersPage = (props:any) =>{
     const [loading, setLoading] = useState(true);
 
     const [users, setUsers] = useState([
@@ -25,7 +25,7 @@ const UsersPage = () =>{
             {loading ? <h2>Carregando...</h2> : null}
                 <List>
                     {users.map((user) => (
-                        <ListItemButton>
+                        <ListItemButton onClick={() => props.onChange(user)}>
                             <ListItemText primary={user.name}></ListItemText >
                         </ListItemButton>
                     ))}

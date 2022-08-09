@@ -12,6 +12,7 @@ import './css/styles.css';
 
 
 const App = (props: any) => {
+	const [user, setUser] = useState({id: 2, name: "Ervin Howell"});
 	const navBar = {
 		bgcolor: 'rgb(18, 18, 18)',
 		color: 'white',
@@ -29,17 +30,21 @@ const App = (props: any) => {
 	
 	const [pages, setPages] = useState(0);
 
+	const onClickUser = (user: any) => {
+		setUser(user)
+		setPages(2)
+	}
+
 	const changePages = () => {
 		
 		if(pages == 1 || pages == 0){
 			return (
-					<div onClick={() => setPages(2)}><UsersPage/></div>
-					
+					<UsersPage onChange={onClickUser}/>
 				)
 		}
 		else if(pages == 2){
 			return( 
-				<UserTasks user={ {id: 2, name: "Ervin Howell"} }/>
+				<UserTasks user={ user }/>
 			)
 		}
 	}
