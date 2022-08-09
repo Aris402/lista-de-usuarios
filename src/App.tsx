@@ -33,12 +33,13 @@ const App = (props: any) => {
 		
 		if(pages == 1 || pages == 0){
 			return (
-					<UsersPage/>
+					<div onClick={() => setPages(2)}><UsersPage/></div>
+					
 				)
 		}
 		else if(pages == 2){
 			return( 
-				<UserTasks/>
+				<UserTasks user={ {id: 2, name: "Ervin Howell"} }/>
 			)
 		}
 	}

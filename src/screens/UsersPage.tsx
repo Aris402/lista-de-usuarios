@@ -2,7 +2,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useState, useEffect } from "react";
-
+import UserTasks from './UsersTasks';
 
 
 const UsersPage = () =>{
@@ -12,6 +12,7 @@ const UsersPage = () =>{
         { id: 1, name: "Minora" },
         { id: 2, name: "Ataide" },
     ]);
+    
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/users/")
             .then((response) => response.json())
