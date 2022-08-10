@@ -20,3 +20,9 @@ hr{
     flex-direction: column;
     margin-top: 30px;
 }
+.userName{
+    color: blue;
+}
+.header-user{
+    margin-bottom: 40px;
+}

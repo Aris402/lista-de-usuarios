@@ -7,31 +7,33 @@ import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import { useState } from "react";
 
-const navBar = {
-    bgcolor: 'rgb(18, 18, 18)',
-    color: 'white',
-}
-const [open, setOpen] = useState(false);
-
-const [pages, setPages] = useState(0);
-	
-const isOpen = () => {
-    setOpen(true);
-};
-
-const isClosed = () => {
-    setOpen(false);
-};
 
 const NavigationBar = () => {
-    <Toolbar sx={navBar}>
-        <IconButton onClick={open ? isClosed : isOpen} edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+    const navBar = {
+        bgcolor: 'rgb(18, 18, 18)',
+        color: 'white',
+    }
+    const [open, setOpen] = useState(false);
+    
+    const [pages, setPages] = useState(0);
+        
+    const isOpen = () => {
+        setOpen(true);
+    };
+    
+    const isClosed = () => {
+        setOpen(false);
+    };
+    return(
+        <div>
+        <Toolbar sx={navBar}>
+            <IconButton onClick={open ? isClosed : isOpen} edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
-        </IconButton>
-        <Typography variant="h5" noWrap component="div" sx={{ flexGrow: 1 }}>
+            </IconButton>
+            <Typography variant="h5" noWrap component="div" sx={{ flexGrow: 1 }}>
             Navegação
-        </Typography>
-    </Toolbar>
+            </Typography>
+        </Toolbar>
     {open ? 
         <List className="nav-bar">
             <ListItemButton onClick={() => setPages(1)}>
@@ -48,6 +50,8 @@ const NavigationBar = () => {
         </List>
         : null
     }
+        </div>
+    )
 }
 
 export default NavigationBar;

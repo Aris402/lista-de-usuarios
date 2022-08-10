@@ -75,7 +75,7 @@ const UserTasks = (props: any) => {
 
     return (
         <div className="alignMent">
-				<h1>Lista de tarefas de {props.user.name}</h1>
+				<h1 className='header-user'>Lista de tarefas de <span className='userName'>{props.user.name}</span></h1>
 				<div className="tasks">
 					{loading ? <h2>Carregando...</h2> : null}
 					<List className="tasksList">
