@@ -5,6 +5,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
+import UserTasks from "./UsersTasks";
+import UsersPage from "./UsersPage";
 import { useState } from "react";
 
 
@@ -14,8 +16,6 @@ const NavigationBar = () => {
         color: 'white',
     }
     const [open, setOpen] = useState(false);
-    
-    const [pages, setPages] = useState(0);
         
     const isOpen = () => {
         setOpen(true);
@@ -24,6 +24,28 @@ const NavigationBar = () => {
     const isClosed = () => {
         setOpen(false);
     };
+    const [user, setUser] = useState({id: 2, name: "Ervin Howell"});
+	
+	const [pages, setPages] = useState(0);
+
+	const onClickUser = (user: any) => {
+		setUser(user)
+		setPages(2)
+	}
+
+	const changePages = () => {
+		
+		if(pages == 1 || pages == 0){
+			return (
+					<UsersPage onChange={onClickUser}/>
+				)
+		}
+		else if(pages == 2){
+			return( 
+				<UserTasks user={ user }/>
+			)
+		}
+	}
     return(
         <div>
         <Toolbar sx={navBar}>
@@ -50,6 +72,7 @@ const NavigationBar = () => {
         </List>
         : null
     }
+    {changePages()}
         </div>
     )
 }
