@@ -8,12 +8,11 @@ import {
 } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import Check from '@mui/icons-material/Check';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { useState, useEffect } from 'react';
 
 const UserTasks = (props: any) => {
-		const [loading, setLoading] = useState(true);
-		var taskColor = ""
-		var status = ""
+	const [loading, setLoading] = useState(true);
 
     const [tasks, setTasks] = useState([
 		{ userId: "1", title: "Ensinar React", completed: false },
@@ -48,6 +47,32 @@ const UserTasks = (props: any) => {
             .then((json) => {setTasks(json); setLoading(false)});
     });
 
+	const statusIncomplete = () => {
+		return (
+			<ThemeProvider theme={finalTheme}>
+				<Chip 
+					color="error"
+					label={
+						<span>Incomplete</span>
+					}
+					icon={<CancelIcon fontSize="small" />}/>
+			</ThemeProvider>
+		)
+	}
+
+	const statusComplete = () => {
+		return (
+			<ThemeProvider theme={finalTheme}>
+				<Chip 
+					color="success"
+					label={
+						<span>Completed</span>
+					}
+					icon={<Check fontSize="small" />}/>
+			</ThemeProvider>
+		)
+	}
+
     return (
         <div className="alignMent">
 				<h1>Lista de tarefas de {props.user.name}</h1>
@@ -58,21 +83,10 @@ const UserTasks = (props: any) => {
 							<ListItemButton>
 								<ListItemText primary={task.title}></ListItemText>
 								{task.completed ? 
-									taskColor = "success"
+									statusComplete()
 									:
-									taskColor = "error"
+									statusIncomplete()
 								}
-								<ThemeProvider theme={finalTheme}>
-									<Chip
-										color={taskColor}
-										label={
-											<span>
-												 Completed
-											</span>
-										}
-										icon={<Check fontSize="small" />}
-									/>
-								</ThemeProvider>
 							</ListItemButton>
 						))}
 					</List>
