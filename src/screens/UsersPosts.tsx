@@ -1,4 +1,6 @@
-import { ClassNames } from "@emotion/react";
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 import { useState, useEffect } from "react";
 
 const UserPosts = (props:any) => {
@@ -10,14 +12,22 @@ const UserPosts = (props:any) => {
     )
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/todos`)
+        fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/posts`)
             .then((response) => response.json())
             .then((json) => {setPosts(json); setLoading(false)});
     });
 
     return (
         <div className="alignMent">
-            
+            <List className='postsList'>
+                {posts.map((post) => (
+                    <ListItemButton>
+                        <ListItemText primary={post.title}></ListItemText>
+                    </ListItemButton>
+                )
+                )
+                }
+            </List>
         </div>
     )
 }

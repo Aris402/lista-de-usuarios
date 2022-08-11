@@ -8,6 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import UserTasks from "./UsersTasks";
 import UsersPage from "./UsersPage";
 import { useState } from "react";
+import UserPosts from './UsersPosts';
 
 
 const NavigationBar = () => {
@@ -28,16 +29,21 @@ const NavigationBar = () => {
 	
 	const [pages, setPages] = useState(0);
 
-	const onClickUser = (user: any) => {
+	const onClickTask = (user: any) => {
 		setUser(user)
 		setPages(2)
 	}
+    
+    const onClickPost = (user: any) => {
+        setUser(user)
+        setPages(3)
+    }
 
 	const changePages = () => {
 		
 		if(pages == 1 || pages == 0){
 			return (
-					<UsersPage onChange={onClickUser}/>
+					<UsersPage changeToTasks={onClickTask} changeToPosts={onClickPost}/>
 				)
 		}
 		else if(pages == 2){
@@ -45,6 +51,11 @@ const NavigationBar = () => {
 				<UserTasks user={ user }/>
 			)
 		}
+        else if(pages == 3){
+            return (
+                <UserPosts user={user}/>
+            )
+        }
 	}
     return(
         <div>

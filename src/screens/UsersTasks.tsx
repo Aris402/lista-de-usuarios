@@ -63,7 +63,7 @@ const UserTasks = (props: any) => {
 	const statusComplete = () => {
 		return (
 			<ThemeProvider theme={finalTheme}>
-				<Chip 
+				<Chip
 					color="success"
 					label={
 						<span>Completed</span>
@@ -81,7 +81,7 @@ const UserTasks = (props: any) => {
 					<List className="tasksList">
 						{tasks.map((task) => (
 							<ListItemButton>
-								<ListItemText primary={task.title}></ListItemText>
+								<ListItemText primary={task.title} className="taskName"></ListItemText>
 								{task.completed ? 
 									statusComplete()
 									:

@@ -2,10 +2,8 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useState, useEffect } from "react";
-import Chip from '@mui/material/Chip';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import UserTasks from './UsersTasks';
 
 
 const UsersPage = (props:any) =>{
@@ -30,8 +28,8 @@ const UsersPage = (props:any) =>{
                     {users.map((user) => (
                         <ListItemButton>
                             <ListItemText primary={user.name}></ListItemText>
-                            <NewspaperIcon className='pagesIcons'/>
-                            <FormatListBulletedIcon className='pagesIcons' onClick={() => props.onChange(user)}/>
+                            <NewspaperIcon className='pagesIcons' onClick={() => props.changeToPosts(user)}/>
+                            <FormatListBulletedIcon className='pagesIcons' onClick={() => props.changeToTasks(user)}/>
                         </ListItemButton>
                     ))}
                 </List>

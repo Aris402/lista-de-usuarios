@@ -34,3 +34,6 @@ hr{
     background-color: rgb(207, 207, 207);
     transition: 0.3s;
 }
+.taskName{
+    margin-right: 10px;
+}
