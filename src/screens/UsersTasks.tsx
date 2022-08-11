@@ -55,7 +55,7 @@ const UserTasks = (props: any) => {
 					label={
 						<span>Incomplete</span>
 					}
-					icon={<CancelIcon fontSize="small" />}/>
+					icon={<CancelIcon fontSize="small"/>}/>
 			</ThemeProvider>
 		)
 	}

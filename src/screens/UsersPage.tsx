@@ -2,6 +2,9 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useState, useEffect } from "react";
+import Chip from '@mui/material/Chip';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import UserTasks from './UsersTasks';
 
 
@@ -25,8 +28,10 @@ const UsersPage = (props:any) =>{
             {loading ? <h2>Carregando...</h2> : null}
                 <List>
                     {users.map((user) => (
-                        <ListItemButton onClick={() => props.onChange(user)}>
-                            <ListItemText primary={user.name}></ListItemText >
+                        <ListItemButton>
+                            <ListItemText primary={user.name}></ListItemText>
+                            <NewspaperIcon className='pagesIcons'/>
+                            <FormatListBulletedIcon className='pagesIcons' onClick={() => props.onChange(user)}/>
                         </ListItemButton>
                     ))}
                 </List>
