@@ -53,7 +53,7 @@ const NavigationBar = () => {
 		}
         else if(pages == 3){
             return (
-                <UserPosts user={user}/>
+                <UserPosts user={user} userName={user.name}/>
             )
         }
 	}

@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
 import NavigationBar from "./screens/NavBar";
 import './css/styles.css';
-
 
 const App = (props: any) => {
 	
