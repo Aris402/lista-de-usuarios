@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import UserTasks from "./UsersTasks";
 import UsersPage from "./UsersPage";
+import AllTasks from './AllTasks';
 import { useState } from "react";
 import UserPosts from './UsersPosts';
 
@@ -46,20 +47,25 @@ const NavigationBar = () => {
 					<UsersPage changeToTasks={onClickTask} changeToPosts={onClickPost}/>
 				)
 		}
-		else if(pages == 2){
-			return( 
-				<UserTasks user={ user }/>
-			)
-		}
+        else if(pages == 2){
+            return(
+                <UserTasks user={ user }/>
+            )
+        }
         else if(pages == 3){
             return (
                 <UserPosts user={user} userName={user.name}/>
             )
         }
+        else if(pages == 4){
+			return( 
+				<AllTasks userName={user.name}/>
+			)
+		}
 	}
     return(
         <div>
-        <Toolbar sx={navBar}>
+        <Toolbar sx={navBar} className='nav-Bar'>
             <IconButton onClick={open ? isClosed : isOpen} edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
             </IconButton>
@@ -67,22 +73,22 @@ const NavigationBar = () => {
             Navegação
             </Typography>
         </Toolbar>
-    {open ? 
-        <List className="nav-bar">
-            <ListItemButton onClick={() => setPages(1)}>
-                <ListItemText>Usuários</ListItemText>
-            </ListItemButton>
-            <hr></hr>
-            <ListItemButton onClick={() => setPages(2)}>
-                <ListItemText>Tarefas</ListItemText>
-            </ListItemButton>
-            <hr></hr>
-            <ListItemButton onClick={() => setPages(3)}>
-                <ListItemText>Posts</ListItemText>
-            </ListItemButton>
-        </List>
-        : null
-    }
+        {open ? 
+            <List className="nav-list">
+                <ListItemButton onClick={() => setPages(1)}>
+                    <ListItemText>Usuários</ListItemText>
+                </ListItemButton>
+                <hr></hr>
+                <ListItemButton onClick={() => setPages(4)}>
+                    <ListItemText>Tarefas</ListItemText>
+                </ListItemButton>
+                <hr></hr>
+                <ListItemButton onClick={() => setPages(3)}>
+                    <ListItemText>Posts</ListItemText>
+                </ListItemButton>
+            </List>
+            : null
+        }
     {changePages()}
         </div>
     )
