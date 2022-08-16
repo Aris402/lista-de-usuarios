@@ -37,3 +37,12 @@ hr{
 .taskName{
     margin-right: 10px;
 }
+.siteName{
+    color: rgb(72, 21, 131);
+    margin: 20px;
+}
+.loginButton{
+    margin: 15px !important;
+    background-color: black !important;
+    width: 100px !important;
+}

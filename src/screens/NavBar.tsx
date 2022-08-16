@@ -10,9 +10,10 @@ import UsersPage from "./UsersPage";
 import AllTasks from './AllTasks';
 import { useState } from "react";
 import UserPosts from './UsersPosts';
+import Login from './Login';
 
 
-const NavigationBar = () => {
+const NavigationBar = (props:any) => {
     const navBar = {
         bgcolor: 'rgb(18, 18, 18)',
         color: 'white',
@@ -28,7 +29,9 @@ const NavigationBar = () => {
     };
     const [user, setUser] = useState({id: 2, name: "Ervin Howell"});
 	
-	const [pages, setPages] = useState(0);
+    const [pages, setPages] = useState(0);
+    
+    const [isLogged, setLogin] = useState(false);
 
 	const onClickTask = (user: any) => {
 		setUser(user)
@@ -40,13 +43,26 @@ const NavigationBar = () => {
         setPages(3)
     }
 
+    const loginChecker = () => {
+        setLogin(true);
+    }
+
+    const navHidden = () => {
+        
+    }
+
 	const changePages = () => {
 		
-		if(pages == 1 || pages == 0){
+		if(pages == 1){
 			return (
 					<UsersPage changeToTasks={onClickTask} changeToPosts={onClickPost}/>
 				)
-		}
+        }
+        else if(pages == 0){
+            return(
+                <Login logIn={loginChecker}/>
+            )
+        }
         else if(pages == 2){
             return(
                 <UserTasks user={ user }/>
