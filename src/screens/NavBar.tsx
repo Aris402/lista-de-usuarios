@@ -45,17 +45,48 @@ const NavigationBar = (props:any) => {
 
     const loginChecker = () => {
         setLogin(true);
+        setPages(1);
     }
 
-    const navHidden = () => {
-        
+    const navDisplay = () => {
+        return(
+            <div>
+                <Toolbar sx={navBar} className='nav-Bar'>
+                    <IconButton onClick={open ? isClosed : isOpen} edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                    <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h5" noWrap component="div" sx={{ flexGrow: 1 }}>
+                            Navegação
+                    </Typography>
+                </Toolbar>
+                {open ? 
+                    <List className="nav-list">
+                        <ListItemButton onClick={() => setPages(1)}>
+                            <ListItemText>Usuários</ListItemText>
+                        </ListItemButton>
+                        <hr></hr>
+                        <ListItemButton onClick={() => setPages(4)}>
+                            <ListItemText>Tarefas</ListItemText>
+                        </ListItemButton>
+                        <hr></hr>
+                        <ListItemButton onClick={() => setPages(3)}>
+                            <ListItemText>Posts</ListItemText>
+                        </ListItemButton>
+                    </List>
+                    : null
+                }
+            </div>
+        )
     }
 
 	const changePages = () => {
 		
 		if(pages == 1){
 			return (
+                <div>
+                    {navDisplay()}
 					<UsersPage changeToTasks={onClickTask} changeToPosts={onClickPost}/>
+                </div>
 				)
         }
         else if(pages == 0){
@@ -65,47 +96,32 @@ const NavigationBar = (props:any) => {
         }
         else if(pages == 2){
             return(
-                <UserTasks user={ user }/>
+                <div>
+                    {navDisplay()}
+                    <UserTasks user={ user }/>
+                </div>
             )
         }
         else if(pages == 3){
             return (
-                <UserPosts user={user} userName={user.name}/>
+                <div>
+                    {navDisplay()}
+                    <UserPosts user={user} userName={user.name}/>
+                </div>
             )
         }
         else if(pages == 4){
 			return( 
+                <div>
+                    {navDisplay()}
 				<AllTasks userName={user.name}/>
+                </div>
 			)
 		}
 	}
     return(
         <div>
-        <Toolbar sx={navBar} className='nav-Bar'>
-            <IconButton onClick={open ? isClosed : isOpen} edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <MenuIcon />
-            </IconButton>
-            <Typography variant="h5" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Navegação
-            </Typography>
-        </Toolbar>
-        {open ? 
-            <List className="nav-list">
-                <ListItemButton onClick={() => setPages(1)}>
-                    <ListItemText>Usuários</ListItemText>
-                </ListItemButton>
-                <hr></hr>
-                <ListItemButton onClick={() => setPages(4)}>
-                    <ListItemText>Tarefas</ListItemText>
-                </ListItemButton>
-                <hr></hr>
-                <ListItemButton onClick={() => setPages(3)}>
-                    <ListItemText>Posts</ListItemText>
-                </ListItemButton>
-            </List>
-            : null
-        }
-    {changePages()}
+        {changePages()}
         </div>
     )
 }

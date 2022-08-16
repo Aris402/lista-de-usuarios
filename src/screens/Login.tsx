@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
 const Login = (props:any) => {
+
     return(
         <Box className="alignMent"
         component="form"
@@ -20,7 +21,8 @@ const Login = (props:any) => {
             label="E-mail"
             type="text"
             autoComplete="current-password"
-            variant="filled"
+            variant="filled" 
+            className='inputs'
             />
             <TextField
             id="filled-password-input"
@@ -28,9 +30,10 @@ const Login = (props:any) => {
             type="password"
             autoComplete="current-password"
             variant="filled"
+            className='inputs'
             />
             <Stack direction="row" spacing={2}>
-                <Button variant="contained" className='loginButton'>Login</Button>
+                <Button variant="contained" className='loginButton' onClick={() => props.logIn()}>Login</Button>
             </Stack>
         </Box>
     )
