@@ -72,6 +72,10 @@ const NavigationBar = (props:any) => {
                         <ListItemButton onClick={() => setPages(3)}>
                             <ListItemText>Posts</ListItemText>
                         </ListItemButton>
+                        <hr></hr>
+                        <ListItemButton onClick={() => setPages(6)}>
+                            <ListItemText>Logout</ListItemText>
+                        </ListItemButton>
                     </List>
                     : null
                 }
@@ -118,6 +122,11 @@ const NavigationBar = (props:any) => {
                 </div>
 			)
 		}
+        else if(pages == 6) {
+            return(
+                <Login logIn={loginChecker}/>
+            )
+        }
 	}
     return(
         <div>

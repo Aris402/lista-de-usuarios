@@ -46,3 +46,8 @@ hr{
     background-color: black !important;
     width: 100px !important;
 }
+.commentBox{
+    position: relative;
+    float: right;
+    padding: 10px;
+}

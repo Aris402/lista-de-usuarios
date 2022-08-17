@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import CommentIcon from '@mui/icons-material/Comment';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -69,6 +70,9 @@ const UserPosts = (props:any) => {
                             </Typography>
                             )}
                         </CardContent>
+                        <div className='commentBox'>
+                            <CommentIcon fontSize='medium'/>
+                        </div>
                     </Card>
                 )
                 )
