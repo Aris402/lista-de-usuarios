@@ -1,25 +1,26 @@
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CommentIcon from '@mui/icons-material/Comment';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Skeleton from '@mui/material/Skeleton';
 import { useState, useEffect } from "react";
 import React from 'react';
+import Comments from './UsersComments';
 
 const UserPosts = (props:any) => {
     const [loading, setLoading] = useState(true);
-
+      
     const [posts, setPosts] = useState([
-        {userId: 1, title: "postagem1", body: "eita, isso é um post :0"},
-        {userId: 2, title: "postagem2", body: "eita, isso é dois post :0"}]
+        {userId: 1, title: "postagem1", body: "eita, isso é um post :0", id: 1},
+        {userId: 2, title: "postagem2", body: "eita, isso é dois post :0", id: 2}]
     )
+
+    const [postID, setPostID] = useState(0);
+    <Comments identifier={postID}/>
+
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/posts`)
@@ -70,7 +71,7 @@ const UserPosts = (props:any) => {
                             </Typography>
                             )}
                         </CardContent>
-                        <div className='commentBox'>
+                        <div className='commentBox' onClick={() => {setPostID(post.id); }}>
                             <CommentIcon fontSize='medium'/>
                         </div>
                     </Card>
@@ -81,4 +82,5 @@ const UserPosts = (props:any) => {
         </div>
     )
 }
+
 export default UserPosts;

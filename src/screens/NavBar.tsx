@@ -11,6 +11,7 @@ import AllTasks from './AllTasks';
 import { useState } from "react";
 import UserPosts from './UsersPosts';
 import Login from './Login';
+import Comments from './UsersComments';
 
 
 const NavigationBar = (props:any) => {
@@ -125,6 +126,11 @@ const NavigationBar = (props:any) => {
         else if(pages == 6) {
             return(
                 <Login logIn={loginChecker}/>
+            )
+        }
+        else if(pages == 7){
+            return(
+                <Comments/>
             )
         }
 	}
