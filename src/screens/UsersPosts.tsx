@@ -20,6 +20,7 @@ const UserPosts = (props:any) => {
 
     const [postID, setPostID] = useState(0);
 
+    <Comments identifier={postID}/>
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/posts`)
@@ -70,8 +71,8 @@ const UserPosts = (props:any) => {
                             </Typography>
                             )}
                         </CardContent>
-                        <div className='commentBox' onClick={() => {setPostID(post.id); props.changeToComments()}}>
-                            <a href="#" style={{color: 'black'}}><CommentIcon fontSize='medium'/></a>
+                        <div className='commentBox'>
+                            <a href="#" style={{color: 'black'}} onClick={() => {setPostID(post.id); props.changeToComments(post.id)}}><CommentIcon fontSize='medium'/></a>
                         </div>
                     </Card>
                 )

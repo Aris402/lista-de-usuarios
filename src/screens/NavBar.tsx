@@ -31,6 +31,8 @@ const NavigationBar = (props:any) => {
     const [user, setUser] = useState({id: 2, name: "Ervin Howell"});
 	
     const [pages, setPages] = useState(0);
+
+    const [post, setPost] = useState(0);
     
     const [isLogged, setLogin] = useState(false);
 
@@ -44,7 +46,8 @@ const NavigationBar = (props:any) => {
         setPages(3)
     }
 
-    const onClickComments = () => {
+    const onClickComments = (post:any) => {
+        setPost(post)
         setPages(7)
     }
 
@@ -134,7 +137,10 @@ const NavigationBar = (props:any) => {
         }
         else if(pages == 7){
             return(
-                <Comments/>
+                <div>
+                    {navDisplay()}
+                    <Comments user={ user } exportPostID={post}/>
+                </div>
             )
         }
 	}

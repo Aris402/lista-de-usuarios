@@ -13,7 +13,7 @@ const Comments = (props:any) => {
     ])
     
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/todos`)
+        fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/comments`)
             .then((response) => response.json())
             .then((json) => {setComments(json); setLoading(false)});
     });
@@ -27,22 +27,12 @@ const Comments = (props:any) => {
       }));
 
     const [loading, setLoading] = useState(true);
-    /*const [sameID, isTheSameID] = useState(false);  
 
-    const findPost = (comment:any) => {
-        if(comment.postId == props.identifier){
-            isTheSameID(true);
-        }
-        else{
-            isTheSameID(false);
-        }
-    }*/
+    var commentsFilter = comments.filter(comment => {return comment.postId === props.exportPostID})
       
     const idChecker = () => {
-        
-        comments.map((comment) => {
-            if(comment.postId == props.identifier){
-                return(<Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
+        return(commentsFilter.map((comment) => (
+            <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
                 <StyledPaper
                     sx={{
                     my: 1,
@@ -59,12 +49,9 @@ const Comments = (props:any) => {
                     </Grid>
                     </Grid>
                 </StyledPaper>
-                </Box>)
-            }
-            else{
-                return(null)
-            }
-        })
+                </Box>
+        )))
+        
     }
 
     return(
