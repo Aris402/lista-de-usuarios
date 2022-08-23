@@ -19,7 +19,6 @@ const UserPosts = (props:any) => {
     )
 
     const [postID, setPostID] = useState(0);
-    <Comments identifier={postID}/>
 
 
     useEffect(() => {
@@ -71,8 +70,8 @@ const UserPosts = (props:any) => {
                             </Typography>
                             )}
                         </CardContent>
-                        <div className='commentBox' onClick={() => {setPostID(post.id); }}>
-                            <CommentIcon fontSize='medium'/>
+                        <div className='commentBox' onClick={() => {setPostID(post.id); props.changeToComments()}}>
+                            <a href="#" style={{color: 'black'}}><CommentIcon fontSize='medium'/></a>
                         </div>
                     </Card>
                 )

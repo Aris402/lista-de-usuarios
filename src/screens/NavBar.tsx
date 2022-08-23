@@ -44,6 +44,10 @@ const NavigationBar = (props:any) => {
         setPages(3)
     }
 
+    const onClickComments = () => {
+        setPages(7)
+    }
+
     const loginChecker = () => {
         setLogin(true);
         setPages(1);
@@ -111,7 +115,7 @@ const NavigationBar = (props:any) => {
             return (
                 <div>
                     {navDisplay()}
-                    <UserPosts user={user} userName={user.name}/>
+                    <UserPosts changeToComments={onClickComments} user={user} userName={user.name}/>
                 </div>
             )
         }
