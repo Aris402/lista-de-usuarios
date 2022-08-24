@@ -1,4 +1,5 @@
 import List from '@mui/material/List';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -30,6 +31,15 @@ const UserPosts = (props:any) => {
 
     return (
         <div className="alignMent">
+            <div className='backHeaders'>
+            <a href='#' style={{color:'black', textDecoration:'none'}} onClick={() => props.backToUsers()}>
+                <div className='backDiv'>
+                    <ArrowBackIcon/>
+                    <p style={{marginLeft: '5px'}}>Voltar</p>
+                </div>
+            </a>
+                <h1>Posts de {props.userName}</h1>
+            </div>
             <List className='postsList'>
                 {posts.map((post) => (
                     <Card sx={{ maxWidth: 345, m: 2 }}>

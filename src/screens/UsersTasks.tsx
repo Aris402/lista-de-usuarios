@@ -10,6 +10,7 @@ import Chip from '@mui/material/Chip';
 import Check from '@mui/icons-material/Check';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useState, useEffect } from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const UserTasks = (props: any) => {
 	const [loading, setLoading] = useState(true);
@@ -75,6 +76,14 @@ const UserTasks = (props: any) => {
 
     return (
         <div className="alignMent">
+				<div className='backHeaders'>
+				<a href='#' style={{color:'black', textDecoration:'none'}} onClick={() => props.backToUsers()}>
+					<div className='backDiv'>
+						<ArrowBackIcon/>
+						<p style={{marginLeft: '5px'}}>Voltar</p>
+					</div>
+				</a>
+				</div>
 				<h1 className='header-user'>Lista de tarefas de <span className='userName'>{props.user.name}</span></h1>
 				<div className="tasks">
 					{loading ? <h2>Carregando...</h2> : null}

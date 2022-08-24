@@ -51,6 +51,10 @@ const NavigationBar = (props:any) => {
         setPages(7)
     }
 
+    const backToUsers = () =>{
+        setPages(1);
+    }
+
     const loginChecker = () => {
         setLogin(true);
         setPages(1);
@@ -110,7 +114,7 @@ const NavigationBar = (props:any) => {
             return(
                 <div>
                     {navDisplay()}
-                    <UserTasks user={ user }/>
+                    <UserTasks user={user} backToUsers={backToUsers}/>
                 </div>
             )
         }
@@ -118,7 +122,7 @@ const NavigationBar = (props:any) => {
             return (
                 <div>
                     {navDisplay()}
-                    <UserPosts changeToComments={onClickComments} user={user} userName={user.name}/>
+                    <UserPosts changeToComments={onClickComments} user={user} userName={user.name} backToUsers={backToUsers}/>
                 </div>
             )
         }
@@ -126,7 +130,7 @@ const NavigationBar = (props:any) => {
 			return( 
                 <div>
                     {navDisplay()}
-				<AllTasks userName={user.name}/>
+				    <AllTasks userName={user.name}/>
                 </div>
 			)
 		}
@@ -139,14 +143,14 @@ const NavigationBar = (props:any) => {
             return(
                 <div>
                     {navDisplay()}
-                    <Comments user={ user } exportPostID={post}/>
+                    <Comments user={user} exportPostID={post} backToPosts={onClickPost}/>
                 </div>
             )
         }
 	}
     return(
         <div>
-        {changePages()}
+            {changePages()}
         </div>
     )
 }
