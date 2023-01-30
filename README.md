@@ -10,26 +10,26 @@
 
 Here's a image from the project's login screen, but there's no authentication
 
-![image-20230130153237744](C:\Users\Aris4\AppData\Roaming\Typora\typora-user-images\image-20230130153237744.png)
+![image-20230130153237744](readmeimages\image-20230130153237744.png)
 
 Below, a image of the users list
 
-![image-20230130153446802](C:\Users\Aris4\AppData\Roaming\Typora\typora-user-images\image-20230130153446802.png)
+![image-20230130153446802](readmeimages\image-20230130153446802.png)
 
 
 
 If we click on the first icon, the application shows the posts from that user
 
-![image-20230130153750242](C:\Users\Aris4\AppData\Roaming\Typora\typora-user-images\image-20230130153750242.png)
+![image-20230130153750242](readmeimages\image-20230130153750242.png)
 
 
 
 And if we click on the second icon, the application shows the user's tasks
 
-![image-20230130161337426](C:\Users\Aris4\AppData\Roaming\Typora\typora-user-images\image-20230130161337426.png)
+![image-20230130161337426](readmeimages\image-20230130161337426.png)
 
 
 
 Finally, in the application there's a navigation bar too
 
-![image-20230130161453598](C:\Users\Aris4\AppData\Roaming\Typora\typora-user-images\image-20230130161453598.png)
+![image-20230130161453598](readmeimages\image-20230130161453598.png)
